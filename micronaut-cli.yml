@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: curriculum.analyser
+---
+testFramework: kotlintest
+sourceLanguage: kotlin
