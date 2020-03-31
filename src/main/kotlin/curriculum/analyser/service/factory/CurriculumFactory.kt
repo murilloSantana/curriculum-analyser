@@ -14,6 +14,6 @@ class CurriculumFactory (private val docxConverterService: DocxConverterService,
         val curriculumDocx = docxConverterService.convertDocxToObject(file);
         val curriculumHtml = htmlConverterService.convertDocxToHtml(file);
 
-        return Curriculum(curriculumDocx = curriculumDocx, curriculumHtml = "");
+        return Curriculum(curriculumDocx = curriculumDocx, curriculumHtml = curriculumHtml);
     }
 }

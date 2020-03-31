@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Post
 import org.apache.commons.io.FileUtils
 
 @Controller("/converter")
-class ConverterController(val docxConverter: DocxConverterService, val curriculumFactory: CurriculumFactory) {
+class ConverterController(val docxConverter: DocxConverterService, private val curriculumFactory: CurriculumFactory) {
 
     @Post
     fun converter(): Int {

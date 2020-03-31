@@ -1,1 +1,4 @@
-curriculum.analyser.controller.$HelloControllerDefinitionClass
+curriculum.analyser.service.converter.$DocxConverterServiceDefinitionClass
+curriculum.analyser.controller.$ConverterControllerDefinitionClass
+curriculum.analyser.service.converter.$HtmlConverterServiceDefinitionClass
+curriculum.analyser.service.factory.$CurriculumFactoryDefinitionClass
