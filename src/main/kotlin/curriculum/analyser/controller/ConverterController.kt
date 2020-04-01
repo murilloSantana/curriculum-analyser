@@ -11,7 +11,7 @@ class ConverterController(private val curriculumFactory: CurriculumFactory,
                           private val defaultChain: Chain) {
 
     @Post
-    fun converter(): Int {
+    suspend fun converter(): Int {
         val docxFile = FileUtils.getFile("./doc/murillo_ferreira.docx");
         val curriculum = curriculumFactory.createCurriculumInstance(docxFile);
 

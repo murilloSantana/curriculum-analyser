@@ -3,6 +3,9 @@ package curriculum.analyser.service.factory
 import curriculum.analyser.model.Curriculum
 import curriculum.analyser.service.converter.DocxConverterService
 import curriculum.analyser.service.converter.HtmlConverterService
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import java.io.File
 import javax.inject.Singleton
 
@@ -10,10 +13,10 @@ import javax.inject.Singleton
 class CurriculumFactory (private val docxConverterService: DocxConverterService,
                          private val htmlConverterService: HtmlConverterService) {
 
-    fun createCurriculumInstance(file: File): Curriculum {
-        val curriculumDocx = docxConverterService.convertDocxToObject(file);
-        val curriculumHtml = htmlConverterService.convertDocxToHtml(file);
+    suspend fun createCurriculumInstance(file: File): Curriculum = coroutineScope {
+        val curriculumDocx =  async(start = CoroutineStart.LAZY) { docxConverterService.convertDocxToObject(file) };
+        val curriculumHtml = async { htmlConverterService.convertDocxToHtml(file) };
 
-        return Curriculum(curriculumDocx = curriculumDocx, curriculumHtml = curriculumHtml);
+        Curriculum(curriculumDocx = curriculumDocx.await(), curriculumHtml = curriculumHtml.await());
     }
 }

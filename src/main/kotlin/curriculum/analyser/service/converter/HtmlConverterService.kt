@@ -13,10 +13,9 @@ class HtmlConverterService() {
 
     private val LOG = LoggerFactory.getLogger(HtmlConverterService::class.java)
 
-    fun convertDocxToHtml(docxFile: File): Document {
+    suspend fun convertDocxToHtml(docxFile: File): Document {
         val convertedFile = runShellCommandToConvertDocxToHtml(docxFile);
         val document = Jsoup.parse(FileUtils.readFileToString(convertedFile, Charsets.UTF_8));
-
         return document;
     }
 
@@ -26,14 +25,13 @@ class HtmlConverterService() {
 
         val process = ProcessBuilder(convertCommand).start();
 
+        process.waitFor(3, TimeUnit.SECONDS);
+
         process.inputStream.reader(Charsets.UTF_8).use {
             LOG.info(it.readText());
+            val convertedFileName = file.absolutePath.replace(file.extension, "html");
+
+            return FileUtils.getFile(convertedFileName);
         }
-
-        process.waitFor(5, TimeUnit.SECONDS);
-
-        val convertedFileName = file.absolutePath.replace(file.extension, "html");
-
-        return FileUtils.getFile(convertedFileName);
     }
 }

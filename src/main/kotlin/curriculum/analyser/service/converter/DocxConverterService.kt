@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 class DocxConverterService {
 
-    fun convertDocxToObject(docxFile: File): XWPFDocument {
+    suspend fun convertDocxToObject(docxFile: File): XWPFDocument {
         val inputStream: InputStream = FileInputStream(docxFile);
         return XWPFDocument(inputStream);
     }

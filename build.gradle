@@ -42,6 +42,8 @@ dependencies {
     compile "commons-io:commons-io:2.6"
     compile "org.apache.poi:poi-ooxml:4.1.2"
     compile 'org.jsoup:jsoup:1.13.1'
+    compile 'org.languagetool:language-pt:4.8'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
 }
 
 test.classpath += configurations.developmentOnly
