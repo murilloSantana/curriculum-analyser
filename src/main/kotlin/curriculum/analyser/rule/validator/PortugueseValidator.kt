@@ -1,5 +1,6 @@
 package curriculum.analyser.rule.validator
 
+import curriculum.analyser.model.Analyze
 import curriculum.analyser.model.Curriculum
 import kotlinx.coroutines.*
 import org.languagetool.JLanguageTool
@@ -16,17 +17,15 @@ class PortugueseValidator(private val curriculum: Curriculum,
         }
     }
 
-    override fun validate()   {
+    override fun validate() {
         val language = JLanguageTool(BrazilianPortuguese());
 
-        val result =  curriculum.curriculumDocx.paragraphs
-                .stream()
-                .map {
+        val ruleMatch = curriculum.curriculumDocx.paragraphs
+                .flatMap {
                     language.check(it.paragraphText)
                 }
 
-        println(result)
-
+        curriculum.analyzeResult = Analyze().parseRuleMatchToAnaylsis(ruleMatch);
     }
 
 }
