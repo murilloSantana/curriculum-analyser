@@ -20,6 +20,7 @@ class HtmlConverterService() {
     }
 
     private fun runShellCommandToConvertDocxToHtml(file: File): File {
+        println(file.name)
         val convertCommand = listOf(
                 "soffice", "--headless", "--convert-to", "html", file.absolutePath, "--outdir", file.parent);
 
