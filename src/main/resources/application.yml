@@ -1,3 +1,6 @@
 micronaut:
   application:
     name: curriculum-analyser
+  server:
+    cors:
+      enabled: true

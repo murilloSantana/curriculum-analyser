@@ -2,11 +2,8 @@ package curriculum.analyser.rule.validator
 
 import curriculum.analyser.model.Analyze
 import curriculum.analyser.model.Curriculum
-import kotlinx.coroutines.*
 import org.languagetool.JLanguageTool
 import org.languagetool.language.BrazilianPortuguese
-import org.languagetool.rules.RuleMatch
-import java.util.stream.Collectors
 
 class PortugueseValidator(private val curriculum: Curriculum,
                           private val nextValidator: Validator?): Validator {
